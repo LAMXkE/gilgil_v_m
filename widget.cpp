@@ -18,22 +18,14 @@ Widget::~Widget()
 
 void Widget::returnMoney(){
     int cnt[4] = {0};
-    while(mon / 500 > 0 ){
-        cnt[0]++;
-        mon -= 500;
-    }
-    while(mon / 100 > 0){
-        cnt[1]++;
-        mon -= 100;
-    }
-    while(mon / 50 > 0){
-        cnt[2]++;
-         mon -= 50;
-    }
-    while(mon / 10 > 0 ){
-        cnt[3]++;
-        mon -= 10;
-    }
+    cnt[0] = mon / 500;
+    mon %= 500;
+    cnt[1] = mon / 100;
+    mon %= 100;
+    cnt[2] = mon / 50;
+    mon %= 50;
+    cnt[3] = mon / 10;
+    mon %= 10;
 
     QMessageBox msg;
     msg.information(nullptr,"Return", "Returned\n500 * " + QString::number(cnt[0]) + "\n"
